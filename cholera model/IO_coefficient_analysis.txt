@@ -1,0 +1,165 @@
+Model is:
+S'(t) = -S(t)*I(t)*beta_I - S(t)*W(t)*beta_W
+I'(t) = S(t)*I(t)*beta_I + S(t)*W(t)*beta_W - I(t)*gamma
+W'(t) = I(t)*alpha - W(t)*zeta
+y(t) = W(t)
+
+Here are the normalized coefficients of the input-output equations:
+	1) Monomial: (y^(2))^2, coefficient: 1
+	2) Monomial: y^(1) * y^(3), coefficient: -1
+	3) Monomial: (y^(1))^2 * y^(2), coefficient: -beta_I//alpha
+	4) Monomial: y^(1) * y^(2), coefficient: (alpha*beta_W + beta_I*zeta)//beta_I
+	5) Monomial: (y^(1))^3, coefficient: (-beta_I*gamma - beta_I*zeta)//alpha
+	6) Monomial: y^(0) * y^(3), coefficient: (-alpha*beta_W - beta_I*zeta)//beta_I
+	7) Monomial: y^(0) * y^(1) * y^(2), coefficient: (-2*alpha*beta_W - 2*beta_I*zeta)//alpha
+	8) Monomial: (y^(1))^2, coefficient: (alpha*beta_W*gamma + alpha*beta_W*zeta + beta_I*zeta^2)//beta_I
+	9) Monomial: y^(0) * y^(2), coefficient: (-alpha*beta_W*gamma - alpha*beta_W*zeta - beta_I*zeta^2)//beta_I
+	10) Monomial: (y^(0))^2 * y^(2), coefficient: (-alpha^2*beta_W^2 - 2*alpha*beta_I*beta_W*zeta - beta_I^2*zeta^2)//(alpha*beta_I)
+	11) Monomial: (y^(0))^3, coefficient: (-alpha^2*beta_W^2*gamma*zeta - 2*alpha*beta_I*beta_W*gamma*zeta^2 - beta_I^2*gamma*zeta^3)//(alpha*beta_I)
+	12) Monomial: y^(0) * (y^(1))^2, coefficient: (-2*alpha*beta_W*gamma - 2*alpha*beta_W*zeta - 3*beta_I*gamma*zeta - 2*beta_I*zeta^2)//alpha
+	13) Monomial: (y^(0))^2 * y^(1), coefficient: (-alpha^2*beta_W^2*gamma - alpha^2*beta_W^2*zeta - 4*alpha*beta_I*beta_W*gamma*zeta - 2*alpha*beta_I*beta_W*zeta^2 - 3*beta_I^2*gamma*zeta^2 - beta_I^2*zeta^3)//(alpha*beta_I)
+
+Here the way identifiable functions are expressed in terms of the coefficients:
+	 gamma + zeta = c_5//c_3
+	 gamma*zeta = (-c_3*c_8 + c_4*c_5)//c_3
+	 alpha//beta_I = -1//c_3
+	 (alpha*beta_W + beta_I*zeta)//beta_I = c_4
+Checking whether all the IO coefficients can be expressed in terms of the identifiable functions
+Checked!
+==========================
+Model is:
+S'(t) = -S(t)*I(t)*beta_I - S(t)*W(t)*beta_W
+I'(t) = S(t)*I(t)*beta_I + S(t)*W(t)*beta_W - I(t)*gamma
+W'(t) = I(t)*alpha - W(t)*zeta
+y(t) = I(t)*alpha
+
+Here are the normalized coefficients of the input-output equations:
+	1) Monomial: (y^(2))^4, coefficient: 1
+	2) Monomial: y^(1) * (y^(2))^2 * y^(3), coefficient: -2
+	3) Monomial: (y^(1))^2 * (y^(3))^2, coefficient: 1
+	4) Monomial: (y^(1))^3 * (y^(2))^2, coefficient: (-4*beta_I)//alpha
+	5) Monomial: (y^(1))^4 * y^(3), coefficient: (4*beta_I)//alpha
+	6) Monomial: (y^(1))^6, coefficient: (4*beta_I^2)//alpha^2
+	7) Monomial: y^(1) * (y^(2))^3, coefficient: (alpha*beta_W + beta_I*gamma)//beta_I
+	8) Monomial: (y^(1))^2 * y^(2) * y^(3), coefficient: (-alpha*beta_W - beta_I*gamma)//beta_I
+	9) Monomial: (y^(1))^4 * y^(2), coefficient: (-2*alpha*beta_W - 2*beta_I*gamma)//alpha
+	10) Monomial: (y^(0))^2 * (y^(3))^2, coefficient: (alpha*beta_W*gamma + beta_I*gamma*zeta)//beta_I
+	11) Monomial: (y^(0))^3 * y^(3), coefficient: (alpha*beta_W*gamma^2*zeta^2 + beta_I*gamma^2*zeta^3)//beta_I
+	12) Monomial: (y^(1))^2 * (y^(2))^2, coefficient: (2*alpha*beta_W*gamma + beta_I*gamma^2 - beta_I*zeta^2)//beta_I
+	13) Monomial: y^(0) * (y^(2))^2 * y^(3), coefficient: (-alpha*beta_W - beta_I*gamma - beta_I*zeta)//beta_I
+	14) Monomial: y^(0) * y^(1) * (y^(3))^2, coefficient: (alpha*beta_W + beta_I*gamma + beta_I*zeta)//beta_I
+	15) Monomial: y^(0) * (y^(1))^2 * (y^(2))^2, coefficient: (-6*alpha*beta_W - 6*beta_I*gamma - 6*beta_I*zeta)//alpha
+	16) Monomial: y^(0) * (y^(1))^3 * y^(3), coefficient: (8*alpha*beta_W + 8*beta_I*gamma + 8*beta_I*zeta)//alpha
+	17) Monomial: y^(0) * (y^(1))^5, coefficient: (12*alpha*beta_I*beta_W + 12*beta_I^2*gamma + 12*beta_I^2*zeta)//alpha^2
+	18) Monomial: (y^(0))^2 * (y^(1))^2, coefficient: (-alpha*beta_W*gamma^3*zeta^2 - alpha*beta_W*gamma^2*zeta^3 - beta_I*gamma^2*zeta^4)//beta_I
+	19) Monomial: (y^(0))^3 * y^(2), coefficient: (alpha*beta_W*gamma^3*zeta^2 + alpha*beta_W*gamma^2*zeta^3 + beta_I*gamma^2*zeta^4)//beta_I
+	20) Monomial: (y^(0))^4 * y^(3), coefficient: (4*alpha^2*beta_W^2*gamma^2 + 8*alpha*beta_I*beta_W*gamma^2*zeta + 4*beta_I^2*gamma^2*zeta^2)//(alpha*beta_I)
+	21) Monomial: (y^(0))^5, coefficient: (alpha^2*beta_W^2*gamma^3*zeta^2 + 2*alpha*beta_I*beta_W*gamma^3*zeta^3 + beta_I^2*gamma^3*zeta^4)//(alpha*beta_I)
+	22) Monomial: (y^(1))^3 * y^(3), coefficient: (-alpha*beta_W*gamma - alpha*beta_W*zeta - beta_I*gamma^2 + beta_I*gamma*zeta)//beta_I
+	23) Monomial: y^(0) * (y^(1))^2 * y^(3), coefficient: (-2*alpha*beta_W*gamma^2 + alpha*beta_W*zeta^2 + 2*beta_I*gamma*zeta^2 + beta_I*zeta^3)//beta_I
+	24) Monomial: (y^(0))^2 * y^(2) * y^(3), coefficient: (2*alpha*beta_W*gamma^2 + 2*alpha*beta_W*gamma*zeta + beta_I*gamma^2*zeta + 2*beta_I*gamma*zeta^2)//beta_I
+	25) Monomial: (y^(0))^2 * (y^(2))^2, coefficient: (alpha*beta_W*gamma^3 + 2*alpha*beta_W*gamma^2*zeta + alpha*beta_W*gamma*zeta^2 + beta_I*gamma*zeta^3)//beta_I
+	26) Monomial: (y^(0))^2 * y^(1) * y^(3), coefficient: (alpha*beta_W*gamma^2*zeta + 2*alpha*beta_W*gamma*zeta^2 + 2*beta_I*gamma^2*zeta^2 + 2*beta_I*gamma*zeta^3)//beta_I
+	27) Monomial: (y^(0))^2 * y^(1) * y^(2), coefficient: (alpha*beta_W*gamma^3*zeta + 2*alpha*beta_W*gamma^2*zeta^2 + 2*alpha*beta_W*gamma*zeta^3 + 2*beta_I*gamma*zeta^4)//beta_I
+	28) Monomial: (y^(0))^3 * (y^(2))^2, coefficient: (-3*alpha^2*beta_W^2*gamma - 6*alpha*beta_I*beta_W*gamma*zeta - beta_I^2*gamma^3 - 3*beta_I^2*gamma*zeta^2)//(alpha*beta_I)
+	29) Monomial: (y^(0))^6, coefficient: (4*alpha^3*beta_W^3*gamma^3 + 12*alpha^2*beta_I*beta_W^2*gamma^3*zeta + 12*alpha*beta_I^2*beta_W*gamma^3*zeta^2 + 4*beta_I^3*gamma^3*zeta^3)//(alpha^2*beta_I)
+	30) Monomial: (y^(1))^3 * y^(2), coefficient: (2*alpha*beta_W*gamma^2 - alpha*beta_W*gamma*zeta - 2*alpha*beta_W*zeta^2 + beta_I*gamma^2*zeta - 2*beta_I*zeta^3)//beta_I
+	31) Monomial: (y^(1))^5, coefficient: (-alpha^2*beta_W^2 - 6*alpha*beta_I*beta_W*zeta - 3*beta_I^2*gamma^2 + 6*beta_I^2*gamma*zeta - 4*beta_I^2*zeta^2)//(alpha*beta_I)
+	32) Monomial: y^(0) * (y^(2))^3, coefficient: (-alpha*beta_W*gamma - alpha*beta_W*zeta - beta_I*gamma^2 - beta_I*gamma*zeta - beta_I*zeta^2)//beta_I
+	33) Monomial: y^(0) * y^(1) * y^(2) * y^(3), coefficient: (-alpha*beta_W*gamma + 2*alpha*beta_W*zeta + beta_I*gamma^2 - beta_I*gamma*zeta + 2*beta_I*zeta^2)//beta_I
+	34) Monomial: y^(0) * (y^(1))^3, coefficient: (-alpha*beta_W*gamma^3*zeta - 3*alpha*beta_W*gamma^2*zeta^2 - 2*alpha*beta_W*gamma*zeta^3 - beta_I*gamma^2*zeta^3 - 2*beta_I*gamma*zeta^4)//beta_I
+	35) Monomial: y^(0) * (y^(1))^3 * y^(2), coefficient: (-10*alpha*beta_W*gamma + 8*alpha*beta_W*zeta + 2*beta_I*gamma^2 - 10*beta_I*gamma*zeta + 8*beta_I*zeta^2)//alpha
+	36) Monomial: (y^(0))^3 * y^(1) * y^(3), coefficient: (8*alpha^2*beta_W^2*gamma + 8*alpha*beta_I*beta_W*gamma^2 + 16*alpha*beta_I*beta_W*gamma*zeta + 8*beta_I^2*gamma^2*zeta + 8*beta_I^2*gamma*zeta^2)//(alpha*beta_I)
+	37) Monomial: (y^(0))^4 * y^(2), coefficient: (4*alpha^2*beta_W^2*gamma^3 + 6*alpha^2*beta_W^2*gamma^2*zeta + 4*alpha*beta_I*beta_W*gamma^3*zeta + 12*alpha*beta_I*beta_W*gamma^2*zeta^2 + 6*beta_I^2*gamma^2*zeta^3)//(alpha*beta_I)
+	38) Monomial: (y^(1))^4, coefficient: (alpha*beta_W*gamma^3 - 2*alpha*beta_W*gamma*zeta^2 - alpha*beta_W*zeta^3 + beta_I*gamma^2*zeta^2 - beta_I*gamma*zeta^3 - beta_I*zeta^4)//beta_I
+	39) Monomial: y^(0) * y^(1) * (y^(2))^2, coefficient: (-2*alpha*beta_W*gamma^2 - alpha*beta_W*gamma*zeta + alpha*beta_W*zeta^2 - 2*beta_I*gamma^2*zeta - 4*beta_I*gamma*zeta^2 + beta_I*zeta^3)//beta_I
+	40) Monomial: (y^(0))^2 * y^(1) * (y^(2))^2, coefficient: (-3*alpha^2*beta_W^2 - 6*alpha*beta_I*beta_W*gamma - 6*alpha*beta_I*beta_W*zeta - 3*beta_I^2*gamma^2 - 6*beta_I^2*gamma*zeta - 3*beta_I^2*zeta^2)//(alpha*beta_I)
+	41) Monomial: (y^(0))^2 * (y^(1))^2 * y^(3), coefficient: (4*alpha^2*beta_W^2 + 16*alpha*beta_I*beta_W*gamma + 8*alpha*beta_I*beta_W*zeta + 4*beta_I^2*gamma^2 + 16*beta_I^2*gamma*zeta + 4*beta_I^2*zeta^2)//(alpha*beta_I)
+	42) Monomial: (y^(0))^2 * (y^(1))^4, coefficient: (12*alpha^2*beta_W^2 + 36*alpha*beta_I*beta_W*gamma + 24*alpha*beta_I*beta_W*zeta + 12*beta_I^2*gamma^2 + 36*beta_I^2*gamma*zeta + 12*beta_I^2*zeta^2)//alpha^2
+	43) Monomial: (y^(0))^4 * y^(1), coefficient: (2*alpha^2*beta_W^2*gamma^3*zeta + 3*alpha^2*beta_W^2*gamma^2*zeta^2 + 6*alpha*beta_I*beta_W*gamma^3*zeta^2 + 6*alpha*beta_I*beta_W*gamma^2*zeta^3 + 4*beta_I^2*gamma^3*zeta^3 + 3*beta_I^2*gamma^2*zeta^4)//(alpha*beta_I)
+	44) Monomial: y^(0) * (y^(1))^2 * y^(2), coefficient: (-2*alpha*beta_W*gamma^3 - 3*alpha*beta_W*gamma^2*zeta - alpha*beta_W*gamma*zeta^2 + alpha*beta_W*zeta^3 - 3*beta_I*gamma^2*zeta^2 - 2*beta_I*gamma*zeta^3 + beta_I*zeta^4)//beta_I
+	45) Monomial: (y^(0))^3 * (y^(1))^2, coefficient: (-4*alpha^2*beta_W^2*gamma^3 + 3*alpha^2*beta_W^2*gamma*zeta^2 + 6*alpha*beta_I*beta_W*gamma^2*zeta^2 + 6*alpha*beta_I*beta_W*gamma*zeta^3 + 5*beta_I^2*gamma^3*zeta^2 + 6*beta_I^2*gamma^2*zeta^3 + 3*beta_I^2*gamma*zeta^4)//(alpha*beta_I)
+	46) Monomial: (y^(0))^5 * y^(1), coefficient: (12*alpha^3*beta_W^3*gamma^2 + 12*alpha^2*beta_I*beta_W^2*gamma^3 + 36*alpha^2*beta_I*beta_W^2*gamma^2*zeta + 24*alpha*beta_I^2*beta_W*gamma^3*zeta + 36*alpha*beta_I^2*beta_W*gamma^2*zeta^2 + 12*beta_I^3*gamma^3*zeta^2 + 12*beta_I^3*gamma^2*zeta^3)//(alpha^2*beta_I)
+	47) Monomial: y^(0) * (y^(1))^4, coefficient: (-3*alpha^2*beta_W^2*gamma - 4*alpha^2*beta_W^2*zeta - 6*alpha*beta_I*beta_W*gamma^2 - 6*alpha*beta_I*beta_W*gamma*zeta - 6*alpha*beta_I*beta_W*zeta^2 - 3*beta_I^2*gamma^3 + 6*beta_I^2*gamma^2*zeta - 2*beta_I^2*zeta^3)//(alpha*beta_I)
+	48) Monomial: (y^(0))^2 * (y^(1))^3, coefficient: (-6*alpha^2*beta_W^2*gamma^2 - 6*alpha^2*beta_W^2*gamma*zeta + alpha^2*beta_W^2*zeta^2 - 6*alpha*beta_I*beta_W*gamma^3 - 6*alpha*beta_I*beta_W*gamma*zeta^2 + 2*alpha*beta_I*beta_W*zeta^3 + 9*beta_I^2*gamma^2*zeta^2 + beta_I^2*zeta^4)//(alpha*beta_I)
+	49) Monomial: (y^(0))^3 * y^(1) * y^(2), coefficient: (2*alpha^2*beta_W^2*gamma^2 + 12*alpha^2*beta_W^2*gamma*zeta + 6*alpha*beta_I*beta_W*gamma^3 + 4*alpha*beta_I*beta_W*gamma^2*zeta + 24*alpha*beta_I*beta_W*gamma*zeta^2 + 2*beta_I^2*gamma^3*zeta + 2*beta_I^2*gamma^2*zeta^2 + 12*beta_I^2*gamma*zeta^3)//(alpha*beta_I)
+	50) Monomial: (y^(0))^2 * (y^(1))^2 * y^(2), coefficient: (-2*alpha^2*beta_W^2*gamma + 6*alpha^2*beta_W^2*zeta - 2*alpha*beta_I*beta_W*gamma^2 + 8*alpha*beta_I*beta_W*gamma*zeta + 12*alpha*beta_I*beta_W*zeta^2 + 4*beta_I^2*gamma^3 - 8*beta_I^2*gamma^2*zeta + 10*beta_I^2*gamma*zeta^2 + 6*beta_I^2*zeta^3)//(alpha*beta_I)
+	51) Monomial: (y^(0))^4 * (y^(1))^2, coefficient: (12*alpha^3*beta_W^3*gamma + 36*alpha^2*beta_I*beta_W^2*gamma^2 + 36*alpha^2*beta_I*beta_W^2*gamma*zeta + 12*alpha*beta_I^2*beta_W*gamma^3 + 72*alpha*beta_I^2*beta_W*gamma^2*zeta + 36*alpha*beta_I^2*beta_W*gamma*zeta^2 + 12*beta_I^3*gamma^3*zeta + 36*beta_I^3*gamma^2*zeta^2 + 12*beta_I^3*gamma*zeta^3)//(alpha^2*beta_I)
+	52) Monomial: (y^(0))^3 * (y^(1))^3, coefficient: (4*alpha^3*beta_W^3 + 36*alpha^2*beta_I*beta_W^2*gamma + 12*alpha^2*beta_I*beta_W^2*zeta + 36*alpha*beta_I^2*beta_W*gamma^2 + 72*alpha*beta_I^2*beta_W*gamma*zeta + 12*alpha*beta_I^2*beta_W*zeta^2 + 4*beta_I^3*gamma^3 + 36*beta_I^3*gamma^2*zeta + 36*beta_I^3*gamma*zeta^2 + 4*beta_I^3*zeta^3)//(alpha^2*beta_I)
+
+Here the way identifiable functions are expressed in terms of the coefficients:
+	 zeta = (-c_7^5*c_10*c_11 + 2*c_7^4*c_10^4 - c_7^4*c_10^3*c_12 + 2*c_7^3*c_10^2*c_11 + 2*c_7^3*c_10*c_11*c_12 + 3*c_7^2*c_10^5 - 5*c_7^2*c_10^4*c_12 + 2*c_7^2*c_10^3*c_12^2 + 2*c_7^2*c_11^2 + 2*c_7*c_10^3*c_11 - 2*c_7*c_10^2*c_11*c_12 - c_7*c_10*c_11*c_12^2 + c_10^6 - 3*c_10^5*c_12 + 3*c_10^4*c_12^2 - c_10^3*c_12^3 - 2*c_11^2*c_12)//(c_7^4*c_10*c_11 + 2*c_7^3*c_10^4 + 4*c_7^2*c_10^2*c_11 - 2*c_7^2*c_10*c_11*c_12 + 2*c_7*c_10^5 - 2*c_7*c_10^4*c_12 + 2*c_10^3*c_11 - 4*c_10^2*c_11*c_12 + c_10*c_11*c_12^2)
+	 gamma = (2*c_7^3*c_10^2*c_11 + c_7^2*c_10^4*c_12 + 2*c_7^2*c_11^2 + 4*c_7*c_10^3*c_11 - 2*c_7*c_10^2*c_11*c_12 - c_10^6 + 2*c_10^5*c_12 - c_10^4*c_12^2 + 4*c_10*c_11^2 - 2*c_11^2*c_12)//(c_7^4*c_10*c_11 + 2*c_7^3*c_10^4 + 4*c_7^2*c_10^2*c_11 - 2*c_7^2*c_10*c_11*c_12 + 2*c_7*c_10^5 - 2*c_7*c_10^4*c_12 + 2*c_10^3*c_11 - 4*c_10^2*c_11*c_12 + c_10*c_11*c_12^2)
+	 beta_W = (-1//4*c_4*c_7^5*c_10*c_11 - 1//2*c_4*c_7^4*c_10^4 - 1//2*c_4*c_7^3*c_10^2*c_11 + 1//2*c_4*c_7^3*c_10*c_11*c_12 - 1//2*c_4*c_7^2*c_10^5 + 3//4*c_4*c_7^2*c_10^4*c_12 + 1//2*c_4*c_7^2*c_11^2 + 1//2*c_4*c_7*c_10^3*c_11 + 1//2*c_4*c_7*c_10^2*c_11*c_12 - 1//4*c_4*c_7*c_10*c_11*c_12^2 - 1//4*c_4*c_10^6 + 1//2*c_4*c_10^5*c_12 - 1//4*c_4*c_10^4*c_12^2 + c_4*c_10*c_11^2 - 1//2*c_4*c_11^2*c_12)//(c_7^4*c_10*c_11 + 2*c_7^3*c_10^4 + 4*c_7^2*c_10^2*c_11 - 2*c_7^2*c_10*c_11*c_12 + 2*c_7*c_10^5 - 2*c_7*c_10^4*c_12 + 2*c_10^3*c_11 - 4*c_10^2*c_11*c_12 + c_10*c_11*c_12^2)
+	 alpha//beta_I = -4//c_4
+Checking whether all the IO coefficients can be expressed in terms of the identifiable functions
+Checked!
+==========================
+Model is:
+Ih'(t) = (-Ih(t)*Iv(t)*a*b - Ih(t)*H*gamma + Iv(t)*H*a*b)//H
+Iv'(t) = (-Ih(t)*Iv(t)*a*c + Ih(t)*V*a*c - Iv(t)*H*mu)//H
+y(t) = (-Ih(t)*Iv(t)*a*b + Iv(t)*H*a*b)//H
+
+Here are the normalized coefficients of the input-output equations:
+	1) Monomial: y^(2), coefficient: 1
+	2) Monomial: (y^(2))^2, coefficient: -1//(V*a^2*b*c*gamma)
+	3) Monomial: (y^(2))^3, coefficient: 1//4//(V^2*a^4*b^2*c^2*gamma^2)
+	4) Monomial: (y^(1))^2 * (y^(2))^2, coefficient: 1//4//(H*V^2*a^4*b^2*c^2*gamma^3)
+	5) Monomial: (y^(1))^5, coefficient: 1//4//(H*V^3*a^4*b^3*c*gamma^3)
+	6) Monomial: y^(0) * (y^(2))^3, coefficient: -1//4//(H*V^2*a^4*b^2*c^2*gamma^3)
+	7) Monomial: y^(0) * (y^(1))^3 * y^(2), coefficient: -1//2//(H*V^3*a^4*b^3*c*gamma^3)
+	8) Monomial: (y^(0))^2 * y^(1) * (y^(2))^2, coefficient: 1//4//(H*V^3*a^4*b^3*c*gamma^3)
+	9) Monomial: (y^(0))^3 * (y^(1))^3, coefficient: -1//(H^2*V^3*a^3*b^3*gamma^3)
+	10) Monomial: (y^(0))^4 * y^(1) * y^(2), coefficient: 1//(H^2*V^3*a^3*b^3*gamma^3)
+	11) Monomial: (y^(0))^5 * y^(2), coefficient: 1//(H^2*V^3*a^3*b^3*gamma^2)
+	12) Monomial: (y^(0))^6 * y^(1), coefficient: c//(H^3*V^3*a^2*b^3*gamma^3)
+	13) Monomial: y^(1), coefficient: gamma + mu
+	14) Monomial: y^(0), coefficient: (H*gamma*mu - V*a^2*b*c)//H
+	15) Monomial: (y^(0))^3 * (y^(2))^2, coefficient: (1//4*H*gamma - 3//4*V*a*b)//(H^2*V^3*a^4*b^3*c*gamma^3)
+	16) Monomial: (y^(0))^7, coefficient: (H*c*gamma + V*a*b*c)//(H^4*V^3*a^2*b^3*gamma^3)
+	17) Monomial: y^(1) * y^(2), coefficient: (-3//2*a*c - 4*gamma - 5//2*mu)//(V*a^2*b*c*gamma)
+	18) Monomial: y^(1) * (y^(2))^2, coefficient: (3//4*a*c + 7//4*gamma + mu)//(V^2*a^4*b^2*c^2*gamma^2)
+	19) Monomial: y^(0) * (y^(1))^4, coefficient: (-1//4*H*a*c - 1//4*H*mu + 2*V*a*b)//(H^2*V^3*a^4*b^3*c*gamma^3)
+	20) Monomial: (y^(1))^3 * y^(2), coefficient: (1//4*H*c*gamma + 1//4*V*a*b*c + 3//2*V*b*gamma + 1//2*V*b*mu)//(H*V^3*a^4*b^3*c^2*gamma^3)
+	21) Monomial: y^(0) * y^(1) * (y^(2))^2, coefficient: (-1//4*H*c*gamma - 1//2*V*a*b*c - 3//2*V*b*gamma - 3//4*V*b*mu)//(H*V^3*a^4*b^3*c^2*gamma^3)
+	22) Monomial: (y^(0))^2 * (y^(1))^2 * y^(2), coefficient: (1//4*H*a*c - 1//4*H*gamma + 1//4*H*mu - 7//4*V*a*b)//(H^2*V^3*a^4*b^3*c*gamma^3)
+	23) Monomial: (y^(0))^4 * (y^(1))^2, coefficient: (1//2*H*a*c - 1//2*H*gamma + 1//2*H*mu - 9//2*V*a*b)//(H^3*V^3*a^3*b^3*gamma^3)
+	24) Monomial: (y^(1))^2, coefficient: (-1//2*a*c*gamma - 3//2*a*c*mu - 5*gamma^2 - 9//2*gamma*mu - 3//2*mu^2)//(V*a^2*b*c*gamma)
+	25) Monomial: y^(0) * (y^(2))^2, coefficient: (1//4*H*a^2*c^2 + 1//2*H*a*c*mu + H*gamma^2 + 5//4*H*gamma*mu + 1//4*H*mu^2 + 7//4*V*a^2*b*c)//(H*V^2*a^4*b^2*c^2*gamma^2)
+	26) Monomial: (y^(1))^2 * y^(2), coefficient: (1//2*H*a^2*c^2 + 3*H*a*c*gamma + 7//4*H*a*c*mu + 15//4*H*gamma^2 + 5*H*gamma*mu + 5//4*H*mu^2 - 1//2*V*a^2*b*c)//(H*V^2*a^4*b^2*c^2*gamma^2)
+	27) Monomial: y^(0) * y^(2), coefficient: (-1//4*H*a^2*c^2 - 2*H*a*c*gamma - 1//2*H*a*c*mu + 2*H*gamma^2 - 5*H*gamma*mu - 1//4*H*mu^2 - 2*V*a^2*b*c)//(H*V*a^2*b*c*gamma)
+	28) Monomial: (y^(1))^4, coefficient: (1//2*H*a*c^2*gamma + 1//4*H*c*gamma^2 + 1//2*H*c*gamma*mu - 1//4*V*a*b*c*gamma + 1//4*V*a*b*c*mu + 9//4*V*b*gamma^2 + 3//2*V*b*gamma*mu + 1//4*V*b*mu^2)//(H*V^3*a^4*b^3*c^2*gamma^3)
+	29) Monomial: (y^(0))^2 * (y^(2))^2, coefficient: (-1//4*H^2*c*gamma^2 - 1//4*H*V*a^2*b*c^2 + 3//4*H*V*a*b*c*gamma - 1//2*H*V*a*b*c*mu - H*V*b*gamma^2 - 5//4*H*V*b*gamma*mu - 1//4*H*V*b*mu^2 - 3//4*V^2*a^2*b^2*c)//(H^2*V^3*a^4*b^3*c^2*gamma^3)
+	30) Monomial: y^(0) * (y^(1))^2 * y^(2), coefficient: (-1//2*H^2*a*c^2*gamma - 1//4*H^2*c*gamma^2 - 1//2*H^2*c*gamma*mu - 1//4*H*V*a^2*b*c^2 + 5//4*H*V*a*b*c*gamma - H*V*a*b*c*mu - 5//4*H*V*b*gamma^2 - 2*H*V*b*gamma*mu - 3//4*H*V*b*mu^2 + 1//2*V^2*a^2*b^2*c)//(H^2*V^3*a^4*b^3*c^2*gamma^3)
+	31) Monomial: (y^(0))^2 * (y^(1))^3, coefficient: (-1//4*H^2*a^2*c^2 + H^2*a*c*gamma - 1//2*H^2*a*c*mu - 1//2*H^2*gamma^2 - 1//2*H^2*gamma*mu - 1//4*H^2*mu^2 - 9//4*H*V*a^2*b*c + 21//4*H*V*a*b*gamma - 3//4*H*V*a*b*mu + 4*V^2*a^2*b^2)//(H^3*V^3*a^4*b^3*c*gamma^3)
+	32) Monomial: (y^(0))^3 * y^(1) * y^(2), coefficient: (1//4*H^2*a^2*c^2 - 5//4*H^2*a*c*gamma + 1//2*H^2*a*c*mu + 1//2*H^2*gamma^2 + 3//4*H^2*gamma*mu + 1//4*H^2*mu^2 - 3//4*H*V*a^2*b*c - 8*H*V*a*b*gamma - 11//4*H*V*a*b*mu - 9//2*V^2*a^2*b^2)//(H^3*V^3*a^4*b^3*c*gamma^3)
+	33) Monomial: (y^(0))^4 * y^(2), coefficient: (1//4*H^2*a^2*c^2 - 3//2*H^2*a*c*gamma + 1//2*H^2*a*c*mu + 1//4*H^2*gamma^2 + 1//2*H^2*gamma*mu + 1//4*H^2*mu^2 - 3//2*H*V*a^2*b*c - 9//2*H*V*a*b*gamma - 9//2*H*V*a*b*mu - 27//4*V^2*a^2*b^2)//(H^3*V^3*a^4*b^3*c*gamma^2)
+	34) Monomial: (y^(0))^5 * y^(1), coefficient: (1//4*H^2*a^2*c^2 - H^2*a*c*gamma + 1//2*H^2*a*c*mu + 3//4*H^2*gamma^2 + 2*H^2*gamma*mu + 1//4*H^2*mu^2 - H*V*a^2*b*c - 17//2*H*V*a*b*gamma - 4*H*V*a*b*mu - 45//4*V^2*a^2*b^2)//(H^4*V^3*a^3*b^3*gamma^3)
+	35) Monomial: (y^(1))^3, coefficient: (-H*a^2*c^2*gamma + 1//2*H*a^2*c^2*mu + 17//4*H*a*c*gamma^2 + 11//4*H*a*c*gamma*mu + H*a*c*mu^2 + 9//4*H*gamma^3 + 6*H*gamma^2*mu + 13//4*H*gamma*mu^2 + 1//2*H*mu^3 - 1//2*V*a^2*b*c*gamma - 1//2*V*a^2*b*c*mu)//(H*V^2*a^4*b^2*c^2*gamma^2)
+	36) Monomial: y^(0) * y^(1), coefficient: (-1//4*H*a^2*c^2*gamma - 1//4*H*a^2*c^2*mu - 2*H*a*c*gamma^2 - 3*H*a*c*gamma*mu - 1//2*H*a*c*mu^2 + 2*H*gamma^3 - 8*H*gamma^2*mu - 23//4*H*gamma*mu^2 - 1//4*H*mu^3 + 3//2*V*a^3*b*c^2 + 4*V*a^2*b*c*gamma - 3//2*V*a^2*b*c*mu)//(H*V*a^2*b*c*gamma)
+	37) Monomial: y^(0) * y^(1) * y^(2), coefficient: (1//4*H*a^3*c^3 + 11//4*H*a^2*c^2*gamma + H*a^2*c^2*mu - 3//2*H*a*c*gamma^2 + 23//4*H*a*c*gamma*mu + 5//4*H*a*c*mu^2 + 4*H*gamma^3 + 17//2*H*gamma^2*mu + 5*H*gamma*mu^2 + 1//2*H*mu^3 + 9//4*V*a^3*b*c^2 + 2*V*a^2*b*c*gamma + 17//4*V*a^2*b*c*mu)//(H*V^2*a^4*b^2*c^2*gamma^2)
+	38) Monomial: (y^(0))^2, coefficient: (-1//4*H^2*a^2*c^2*gamma*mu - 2*H^2*a*c*gamma^2*mu - 1//2*H^2*a*c*gamma*mu^2 + 2*H^2*gamma^3*mu - 5*H^2*gamma^2*mu^2 - 1//4*H^2*gamma*mu^3 + 1//4*H*V*a^4*b*c^3 + 3*H*V*a^3*b*c^2*gamma + 1//2*H*V*a^3*b*c^2*mu - 2*H*V*a^2*b*c*gamma^2 + 3*H*V*a^2*b*c*gamma*mu + 1//4*H*V*a^2*b*c*mu^2 + 3*V^2*a^4*b^2*c^2)//(H^2*V*a^2*b*c*gamma)
+	39) Monomial: (y^(0))^3 * (y^(1))^2, coefficient: (-3//4*H^2*a^2*c^2*gamma - 1//4*H^2*a*c*gamma^2 - 1//2*H^2*a*c*gamma*mu - 1//4*H^2*gamma^3 + 1//4*H^2*gamma^2*mu + 1//4*H^2*gamma*mu^2 - 2*H*V*a^3*b*c^2 + 13//4*H*V*a^2*b*c*gamma - 6*H*V*a^2*b*c*mu - 3//4*H*V*a*b*gamma^2 - 37//4*H*V*a*b*gamma*mu - 4*H*V*a*b*mu^2 - 15//2*V^2*a^3*b^2*c + 9//2*V^2*a^2*b^2*gamma - 9//2*V^2*a^2*b^2*mu)//(H^3*V^3*a^4*b^3*c*gamma^3)
+	40) Monomial: (y^(0))^6, coefficient: (1//4*H^3*a^2*c^2*gamma - 3//2*H^3*a*c*gamma^2 + 1//2*H^3*a*c*gamma*mu + 1//4*H^3*gamma^3 + 3//2*H^3*gamma^2*mu + 1//4*H^3*gamma*mu^2 + 1//4*H^2*V*a^3*b*c^2 - 4*H^2*V*a^2*b*c*gamma + 1//2*H^2*V*a^2*b*c*mu - 17//4*H^2*V*a*b*gamma^2 - 4*H^2*V*a*b*gamma*mu + 1//4*H^2*V*a*b*mu^2 - 3//2*H*V^2*a^3*b^2*c - 45//4*H*V^2*a^2*b^2*gamma - 9//2*H*V^2*a^2*b^2*mu - 27//4*V^3*a^3*b^3)//(H^5*V^3*a^3*b^3*gamma^3)
+	41) Monomial: y^(0) * (y^(1))^3, coefficient: (1//4*H^2*a^2*c^3*gamma - 1//2*H^2*a*c^2*gamma^2 + 1//2*H^2*a*c^2*gamma*mu + 1//4*H^2*c*gamma^2*mu + 1//4*H^2*c*gamma*mu^2 + 21//4*H*V*a^2*b*c^2*gamma - 1//4*H*V*a^2*b*c^2*mu - 5//4*H*V*a*b*c*gamma^2 + 13//4*H*V*a*b*c*gamma*mu - 1//2*H*V*a*b*c*mu^2 + 3*H*V*b*gamma^3 + 7//4*H*V*b*gamma^2*mu - 1//2*H*V*b*gamma*mu^2 - 1//4*H*V*b*mu^3 - 1//4*V^2*a^3*b^2*c^2 - 5//2*V^2*a^2*b^2*c*gamma + 1//2*V^2*a^2*b^2*c*mu)//(H^2*V^3*a^4*b^3*c^2*gamma^3)
+	42) Monomial: (y^(0))^2 * y^(2), coefficient: (1//2*H^2*a^3*c^3*gamma + 1//2*H^2*a^2*c^2*gamma^2 + 2*H^2*a^2*c^2*gamma*mu - 2*H^2*a*c*gamma^3 + 1//2*H^2*a*c*gamma^2*mu + 5//2*H^2*a*c*gamma*mu^2 + H^2*gamma^4 + 3*H^2*gamma^3*mu + 3*H^2*gamma^2*mu^2 + H^2*gamma*mu^3 + 1//4*H*V*a^4*b*c^3 + 7//2*H*V*a^3*b*c^2*gamma + 1//2*H*V*a^3*b*c^2*mu - 11*H*V*a^2*b*c*gamma^2 + 19//2*H*V*a^2*b*c*gamma*mu + 1//4*H*V*a^2*b*c*mu^2 + V^2*a^4*b^2*c^2)//(H^2*V^2*a^4*b^2*c^2*gamma^2)
+	43) Monomial: (y^(0))^2 * y^(1) * y^(2), coefficient: (-1//4*H^2*a^2*c^3*gamma - 1//2*H^2*a*c^2*gamma*mu - 3//4*H^2*c*gamma^3 - H^2*c*gamma^2*mu - 1//4*H^2*c*gamma*mu^2 - 1//4*H*V*a^3*b*c^3 - 3//2*H*V*a^2*b*c^2*gamma - H*V*a^2*b*c^2*mu + 11*H*V*a*b*c*gamma^2 - 3//2*H*V*a*b*c*gamma*mu - 5//4*H*V*a*b*c*mu^2 - 3*H*V*b*gamma^3 - 13//2*H*V*b*gamma^2*mu - 4*H*V*b*gamma*mu^2 - 1//2*H*V*b*mu^3 - V^2*a^3*b^2*c^2 + 25//4*V^2*a^2*b^2*c*gamma - 2*V^2*a^2*b^2*c*mu)//(H^2*V^3*a^4*b^3*c^2*gamma^3)
+	44) Monomial: (y^(0))^3 * y^(2), coefficient: (-1//4*H^2*a^2*c^3*gamma + 1//2*H^2*a*c^2*gamma^2 - 1//2*H^2*a*c^2*gamma*mu - 1//4*H^2*c*gamma^3 - 1//2*H^2*c*gamma^2*mu - 1//4*H^2*c*gamma*mu^2 - 1//2*H*V*a^3*b*c^3 + H*V*a^2*b*c^2*gamma - 2*H*V*a^2*b*c^2*mu + 13//2*H*V*a*b*c*gamma^2 + 4*H*V*a*b*c*gamma*mu - 5//2*H*V*a*b*c*mu^2 - H*V*b*gamma^3 - 3*H*V*b*gamma^2*mu - 3*H*V*b*gamma*mu^2 - H*V*b*mu^3 - 3//2*V^2*a^3*b^2*c^2 + 63//4*V^2*a^2*b^2*c*gamma - 9//2*V^2*a^2*b^2*c*mu)//(H^2*V^3*a^4*b^3*c^2*gamma^2)
+	45) Monomial: y^(0) * (y^(1))^2, coefficient: (1//4*H^2*a^3*c^3*mu + 2*H^2*a^2*c^2*gamma^2 + 7//4*H^2*a^2*c^2*gamma*mu + 3//4*H^2*a^2*c^2*mu^2 + 1//2*H^2*a*c*gamma^3 + 31//4*H^2*a*c*gamma^2*mu + 11//2*H^2*a*c*gamma*mu^2 + 3//4*H^2*a*c*mu^3 + 3*H^2*gamma^4 + 49//4*H^2*gamma^3*mu + 51//4*H^2*gamma^2*mu^2 + 15//4*H^2*gamma*mu^3 + 1//4*H^2*mu^4 - 1//2*H*V*a^4*b*c^3 - 37//4*H*V*a^3*b*c^2*gamma + 2*H*V*a^3*b*c^2*mu + 13//4*H*V*a^2*b*c*gamma^2 - 3//4*H*V*a^2*b*c*gamma*mu + 5//2*H*V*a^2*b*c*mu^2 + 1//2*V^2*a^4*b^2*c^2)//(H^2*V^2*a^4*b^2*c^2*gamma^2)
+	46) Monomial: (y^(0))^4 * y^(1), coefficient: (-1//4*H^3*a^3*c^3*gamma - 1//4*H^3*a^2*c^2*gamma*mu - 7//4*H^3*a*c*gamma^3 - 2*H^3*a*c*gamma^2*mu + 1//4*H^3*a*c*gamma*mu^2 + 3//4*H^3*gamma^3*mu + H^3*gamma^2*mu^2 + 1//4*H^3*gamma*mu^3 - 1//2*H^2*V*a^4*b*c^3 - 2*H^2*V*a^3*b*c^2*gamma - 2*H^2*V*a^3*b*c^2*mu + 19//2*H^2*V*a^2*b*c*gamma^2 - 7//2*H^2*V*a^2*b*c*gamma*mu - 5//2*H^2*V*a^2*b*c*mu^2 - 4*H^2*V*a*b*gamma^3 - 18*H^2*V*a*b*gamma^2*mu - 21//2*H^2*V*a*b*gamma*mu^2 - H^2*V*a*b*mu^3 - 7//2*H*V^2*a^4*b^2*c^2 + 79//4*H*V^2*a^3*b^2*c*gamma - 19//2*H*V^2*a^3*b^2*c*mu - 3*H*V^2*a^2*b^2*gamma^2 - 51//4*H*V^2*a^2*b^2*gamma*mu - 3*H*V^2*a^2*b^2*mu^2 - 9//2*V^3*a^4*b^3*c)//(H^4*V^3*a^4*b^3*c*gamma^3)
+	47) Monomial: (y^(0))^2 * y^(1), coefficient: (1//2*H^2*a^3*c^3*gamma^2 + 1//2*H^2*a^3*c^3*gamma*mu + 1//2*H^2*a^2*c^2*gamma^3 + 9//2*H^2*a^2*c^2*gamma^2*mu + 2*H^2*a^2*c^2*gamma*mu^2 - 2*H^2*a*c*gamma^4 - H^2*a*c*gamma^3*mu + 8*H^2*a*c*gamma^2*mu^2 + 5//2*H^2*a*c*gamma*mu^3 + H^2*gamma^5 + 7*H^2*gamma^4*mu + 12*H^2*gamma^3*mu^2 + 7*H^2*gamma^2*mu^3 + H^2*gamma*mu^4 - 1//4*H*V*a^5*b*c^4 - 9//2*H*V*a^4*b*c^3*gamma - 1//4*H*V*a^4*b*c^3*mu - 2*H*V*a^3*b*c^2*gamma^2 - 13//2*H*V*a^3*b*c^2*gamma*mu + 1//4*H*V*a^3*b*c^2*mu^2 - 12*H*V*a^2*b*c*gamma^3 - 3*H*V*a^2*b*c*gamma^2*mu + 7*H*V*a^2*b*c*gamma*mu^2 + 1//4*H*V*a^2*b*c*mu^3 - 3*V^2*a^5*b^2*c^3 - 29//2*V^2*a^4*b^2*c^2*gamma)//(H^2*V^2*a^4*b^2*c^2*gamma^2)
+	48) Monomial: (y^(0))^2 * (y^(1))^2, coefficient: (-1//2*H^3*a*c^2*gamma^3 - 1//2*H^3*a*c^2*gamma^2*mu - 1//2*H^3*c*gamma^4 - 5//4*H^3*c*gamma^3*mu - 1//2*H^3*c*gamma^2*mu^2 + 5//2*H^2*V*a^3*b*c^3*gamma - 1//4*H^2*V*a^3*b*c^3*mu + 7//2*H^2*V*a^2*b*c^2*gamma^2 + 25//4*H^2*V*a^2*b*c^2*gamma*mu - 3//4*H^2*V*a^2*b*c^2*mu^2 + 35//4*H^2*V*a*b*c*gamma^3 + 25//2*H^2*V*a*b*c*gamma^2*mu + H^2*V*a*b*c*gamma*mu^2 - 3//4*H^2*V*a*b*c*mu^3 + H^2*V*b*gamma^4 - 13//4*H^2*V*b*gamma^3*mu - 27//4*H^2*V*b*gamma^2*mu^2 - 11//4*H^2*V*b*gamma*mu^3 - 1//4*H^2*V*b*mu^4 + 1//4*H*V^2*a^4*b^2*c^3 + 33//2*H*V^2*a^3*b^2*c^2*gamma - H*V^2*a^3*b^2*c^2*mu - 5//2*H*V^2*a^2*b^2*c*gamma^2 + 39//4*H*V^2*a^2*b^2*c*gamma*mu - 5//4*H*V^2*a^2*b^2*c*mu^2 - 3//4*V^3*a^4*b^3*c^2)//(H^3*V^3*a^4*b^3*c^2*gamma^3)
+	49) Monomial: (y^(0))^3, coefficient: (1//2*H^3*a^3*c^3*gamma^2*mu + 1//2*H^3*a^2*c^2*gamma^3*mu + 2*H^3*a^2*c^2*gamma^2*mu^2 - 2*H^3*a*c*gamma^4*mu + 1//2*H^3*a*c*gamma^3*mu^2 + 5//2*H^3*a*c*gamma^2*mu^3 + H^3*gamma^5*mu + 3*H^3*gamma^4*mu^2 + 3*H^3*gamma^3*mu^3 + H^3*gamma^2*mu^4 - 3//4*H^2*V*a^5*b*c^4*gamma - 5//2*H^2*V*a^4*b*c^3*gamma^2 - 9//4*H^2*V*a^4*b*c^3*gamma*mu + 4*H^2*V*a^3*b*c^2*gamma^3 - 2*H^2*V*a^3*b*c^2*gamma^2*mu - 9//4*H^2*V*a^3*b*c^2*gamma*mu^2 - H^2*V*a^2*b*c*gamma^4 - 14*H^2*V*a^2*b*c*gamma^3*mu + 13//2*H^2*V*a^2*b*c*gamma^2*mu^2 - 3//4*H^2*V*a^2*b*c*gamma*mu^3 - 1//2*H*V^2*a^6*b^2*c^4 - 15//2*H*V^2*a^5*b^2*c^3*gamma - H*V^2*a^5*b^2*c^3*mu + 13*H*V^2*a^4*b^2*c^2*gamma^2 - 27//2*H*V^2*a^4*b^2*c^2*gamma*mu - 1//2*H*V^2*a^4*b^2*c^2*mu^2 - 3*V^3*a^6*b^3*c^3)//(H^3*V^2*a^4*b^2*c^2*gamma^2)
+	50) Monomial: (y^(0))^5, coefficient: (-1//4*H^3*a^3*c^3*gamma^2 + 1//2*H^3*a^2*c^2*gamma^3 - 1//4*H^3*a^2*c^2*gamma^2*mu - 1//4*H^3*a*c*gamma^4 - 2*H^3*a*c*gamma^3*mu + 1//4*H^3*a*c*gamma^2*mu^2 + 1//4*H^3*gamma^4*mu + 1//2*H^3*gamma^3*mu^2 + 1//4*H^3*gamma^2*mu^3 - H^2*V*a^4*b*c^3*gamma + 3*H^2*V*a^3*b*c^2*gamma^2 - 3*H^2*V*a^3*b*c^2*gamma*mu + 6*H^2*V*a^2*b*c*gamma^3 + 3//2*H^2*V*a^2*b*c*gamma^2*mu - 3*H^2*V*a^2*b*c*gamma*mu^2 - H^2*V*a*b*gamma^4 - 15//2*H^2*V*a*b*gamma^3*mu - 15//2*H^2*V*a*b*gamma^2*mu^2 - H^2*V*a*b*gamma*mu^3 - 1//2*H*V^2*a^5*b^2*c^3 + H*V^2*a^4*b^2*c^2*gamma - 2*H*V^2*a^4*b^2*c^2*mu + 107//4*H*V^2*a^3*b^2*c*gamma^2 + 4*H*V^2*a^3*b^2*c*gamma*mu - 5//2*H*V^2*a^3*b^2*c*mu^2 - H*V^2*a^2*b^2*gamma^3 - 39//4*H*V^2*a^2*b^2*gamma^2*mu - 3*H*V^2*a^2*b^2*gamma*mu^2 - H*V^2*a^2*b^2*mu^3 - 3//2*V^3*a^5*b^3*c^2 + 45//2*V^3*a^4*b^3*c*gamma - 9//2*V^3*a^4*b^3*c*mu)//(H^4*V^3*a^4*b^3*c*gamma^3)
+	51) Monomial: (y^(0))^3 * y^(1), coefficient: (-1//4*H^3*a^2*c^3*gamma^3 - 1//4*H^3*a^2*c^3*gamma^2*mu + 1//2*H^3*a*c^2*gamma^4 - 1//2*H^3*a*c^2*gamma^3*mu - 1//2*H^3*a*c^2*gamma^2*mu^2 - 1//4*H^3*c*gamma^5 - 5//4*H^3*c*gamma^4*mu - 5//4*H^3*c*gamma^3*mu^2 - 1//4*H^3*c*gamma^2*mu^3 + 1//2*H^2*V*a^4*b*c^4*gamma + 3*H^2*V*a^3*b*c^3*gamma^2 + 3//2*H^2*V*a^3*b*c^3*gamma*mu + 1//2*H^2*V*a^2*b*c^2*gamma^3 + 5*H^2*V*a^2*b*c^2*gamma^2*mu + 1//2*H^2*V*a^2*b*c^2*gamma*mu^2 + 17//2*H^2*V*a*b*c*gamma^4 + 24*H^2*V*a*b*c*gamma^3*mu + 5*H^2*V*a*b*c*gamma^2*mu^2 - 3//2*H^2*V*a*b*c*gamma*mu^3 - 4*H^2*V*b*gamma^4*mu - 9*H^2*V*b*gamma^3*mu^2 - 6*H^2*V*b*gamma^2*mu^3 - H^2*V*b*gamma*mu^4 + 1//4*H*V^2*a^5*b^2*c^4 + 8*H*V^2*a^4*b^2*c^3*gamma + 1//2*H*V^2*a^4*b^2*c^3*mu - 5*H*V^2*a^3*b^2*c^2*gamma^2 + 37//2*H*V^2*a^3*b^2*c^2*gamma*mu + 1//4*H*V^2*a^3*b^2*c^2*mu^2 + 51//4*H*V^2*a^2*b^2*c*gamma^3 + 93//4*H*V^2*a^2*b^2*c*gamma^2*mu + 3//2*H*V^2*a^2*b^2*c*gamma*mu^2 + 3//2*V^3*a^5*b^3*c^3 + 14*V^3*a^4*b^3*c^2*gamma + 1//2*V^3*a^4*b^3*c^2*mu)//(H^3*V^3*a^4*b^3*c^2*gamma^3)
+	52) Monomial: (y^(0))^4, coefficient: (-1//4*H^4*a^2*c^3*gamma^3*mu + 1//2*H^4*a*c^2*gamma^4*mu - 1//2*H^4*a*c^2*gamma^3*mu^2 - 1//4*H^4*c*gamma^5*mu - 1//2*H^4*c*gamma^4*mu^2 - 1//4*H^4*c*gamma^3*mu^3 + 3//4*H^3*V*a^4*b*c^4*gamma^2 + 2*H^3*V*a^3*b*c^3*gamma^2*mu - 7//4*H^3*V*a^2*b*c^2*gamma^4 + 2*H^3*V*a^2*b*c^2*gamma^3*mu + 3//4*H^3*V*a^2*b*c^2*gamma^2*mu^2 + H^3*V*a*b*c*gamma^5 + 19//2*H^3*V*a*b*c*gamma^4*mu + 7*H^3*V*a*b*c*gamma^3*mu^2 - 3//2*H^3*V*a*b*c*gamma^2*mu^3 - H^3*V*b*gamma^5*mu - 3*H^3*V*b*gamma^4*mu^2 - 3*H^3*V*b*gamma^3*mu^3 - H^3*V*b*gamma^2*mu^4 + 5//4*H^2*V^2*a^5*b^2*c^4*gamma + 3*H^2*V^2*a^4*b^2*c^3*gamma^2 + 9//2*H^2*V^2*a^4*b^2*c^3*gamma*mu - 39//2*H^2*V^2*a^3*b^2*c^2*gamma^3 + 9//2*H^2*V^2*a^3*b^2*c^2*gamma^2*mu + 21//4*H^2*V^2*a^3*b^2*c^2*gamma*mu^2 + 2*H^2*V^2*a^2*b^2*c*gamma^4 + 87//4*H^2*V^2*a^2*b^2*c*gamma^3*mu + 3//2*H^2*V^2*a^2*b^2*c*gamma^2*mu^2 + 2*H^2*V^2*a^2*b^2*c*gamma*mu^3 + 1//4*H*V^3*a^6*b^3*c^4 + 6*H*V^3*a^5*b^3*c^3*gamma + 1//2*H*V^3*a^5*b^3*c^3*mu - 107//4*H*V^3*a^4*b^3*c^2*gamma^2 + 14*H*V^3*a^4*b^3*c^2*gamma*mu + 1//4*H*V^3*a^4*b^3*c^2*mu^2 + V^4*a^6*b^4*c^3)//(H^4*V^3*a^4*b^3*c^2*gamma^3)
+
+Here the way identifiable functions are expressed in terms of the coefficients:
+	 mu = (1//256*c_2^5*c_9^2 + c_4*c_5^3*c_13)//(c_4*c_5^3)
+	 gamma = (-1//256*c_2^5*c_9^2)//(c_4*c_5^3)
+	 H = (-64*c_5^3)//(c_2^3*c_9^2)
+	 a*c = (16*c_5^2)//(c_2^3*c_9)
+	 V*a*b = (16*c_4*c_5)//(c_2^3*c_9)
+Checking whether all the IO coefficients can be expressed in terms of the identifiable functions
+Checked!
+==========================

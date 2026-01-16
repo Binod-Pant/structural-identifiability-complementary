@@ -1,0 +1,32 @@
+WRITE "TWO-STRAIN-SIR"$
+% B_ IS THE VARIABLE VECTOR
+B_:={Y1,X1,X2,X3,X4}$
+FOR EACH EL_ IN B_ DO DEPEND EL_,T$
+
+%B1_ IS THE UNKNOWN PARAMETER VECTOR
+B1_:={beta, gamma}$
+
+%NUMBER OF STATES
+NX_:=4$
+
+%NUMBER OF INPUTS 
+NU_:=0$
+
+%NUMBER OF OUTPUTS
+NY_:=1$
+
+%MODEL EQUATIONS 
+C_:= {df(x1,t) = -beta*(x3+x4)*x1,
+      df(x2,t) = -beta*(x3+x4)*x2,
+      df(x3,t) = beta*(x3+x4)*x1 - gamma*x3,
+      df(x4,t) = beta*(x3+x4)*x2 - gamma*x4,
+      y1 = x3 + x4}$
+
+FLAG_:=1$
+daisy()$
+
+%VALUES OF INITIAL CONDITIONS
+ICK_:={x1=x10, x2=x20, x3=x30, x4=x40}$ 
+ICUNK_:={}$
+CONDINIZ()$
+END$

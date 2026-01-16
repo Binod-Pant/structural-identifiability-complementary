@@ -1,0 +1,37 @@
+WRITE "MODEL1-SEIR"$
+
+% B_ IS THE VARIABLE VECTOR
+
+B_:={Y1,X1,X2,X3}$
+FOR EACH EL_ IN B_ DO DEPEND EL_,T$
+
+Let  N=1$
+%Let  n=0.1$
+%Let gammaaa = 0.1$
+%Let gammaaa = 0.1, sigma = 0.2$
+
+%B1_ IS THE UNKNOWN PARAMETER VECTOR
+
+B1_:={beta,gamma,phi}$
+
+%NUMBER OF STATES
+NX_:=3$
+%NUMBER OF INPUTS 
+NU_:=0$
+%NUMBER OF OUTPUTS
+NY_:=1$
+
+%MODEL  EQUATIONS 
+
+C_:= {df(x1,t) = - beta*x1*x2/(N-x3),
+      df(x2,t) = beta*x1*x2/(N-x3)- gamma*x2,
+      df(x3,t) = phi*gamma*x2,
+      y1 = phi*gamma*x2}$
+FLAG_:=1$
+daisy()$
+
+%VALUES OF INITIAL CONDITIONS
+ICK_:={x1=x10,x2=x20,x3=x30}$ 
+ICUNK_:={}$
+CONDINIZ()$
+END$

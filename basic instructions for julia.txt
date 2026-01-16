@@ -1,0 +1,16 @@
+to check current directory 
+pwd()
+
+to set a directory
+cd("")
+e.g.
+cd("D:/Files")
+
+to run the file
+include("file_name.jl"
+e.g.
+include("behavior_local_power_one_julia.jl")
+
+
+
+
