@@ -1,0 +1,220 @@
+clc; clear; close all;
+
+%% True Parameters
+beta_true = 0.2;
+gamma_true = 0.1;
+phi_d_true = 1/10;  % Mortality fraction
+N = 1;
+
+%% True Initial Conditions
+I0 = 5/10000*N;
+R0 = 0;
+D0 = 0;  % Initial deaths
+S0 = N - (I0+R0);
+y0_true = [S0; I0; R0; D0];
+
+%% Time Span for Simulation
+tspan = 0:1:200;
+
+%% Solve ODE for True Curve
+[t, y_true] = ode45(@(t, y) model_ode(t, y, beta_true, gamma_true, phi_d_true, N), tspan, y0_true);
+
+% Extract true daily mortality from cumulative deaths
+D_cumulative_true = y_true(:, 4);
+Id_true = [D_cumulative_true(1); diff(D_cumulative_true)];
+
+%% Save Generated Data
+save('Id_data.mat', 'Id_true');
+
+%% Data Fitting and Plotting
+
+% Plot true state variables
+figure;
+tile1 = tiledlayout(2,3,"TileSpacing","compact");
+
+nexttile;
+plot(t, Id_true, 'r', 'LineWidth', 3); hold on;
+title('$(a)\ \mathrm{Daily\ Deaths}$','FontSize', 14, 'Interpreter', 'latex');
+grid on;
+
+nexttile;
+plot(t, y_true(:,1), 'k', 'LineWidth', 3); hold on;
+title('$(b)\ \mathrm{Susceptible\ (S)}$','FontSize', 14, 'Interpreter', 'latex');
+grid on;
+
+nexttile;
+plot(t, y_true(:,2), 'k', 'LineWidth', 3); hold on;
+title('$(c)\ \mathrm{Infectious\ (I)}$','FontSize', 14, 'Interpreter', 'latex');
+grid on;
+
+nexttile;
+plot(t, y_true(:,3), 'k', 'LineWidth', 3); hold on;
+title('$(d)\ \mathrm{Recovered\ (R)}$','FontSize', 14, 'Interpreter', 'latex');
+grid on;
+
+nexttile;
+plot(t, y_true(:,4), 'k', 'LineWidth', 3); hold on;
+title('$(e)\ \mathrm{Cumulative\ Deaths\ (D)}$','FontSize', 14, 'Interpreter', 'latex');
+grid on;
+
+nexttile;
+R_naught_true = (beta_true / gamma_true) * (S0 / N);
+plot(t, R_naught_true * ones(size(t)), 'k', 'LineWidth', 3); hold on;
+title('$(f)\ R_0$','FontSize', 14, 'Interpreter', 'latex');
+grid on;
+
+ylabel(tile1, '$\mathrm{Number\ of\ individuals}$', 'FontSize', 18, 'Interpreter', 'latex');
+xlabel(tile1, '$\mathrm{Time\ (in\ days)}$', 'FontSize', 18, 'Interpreter', 'latex');
+
+count = 0;
+total_iterations = 100;
+SIR_curves = [];
+accepted_params = [];
+
+signal_energy = sum(Id_true.^2);
+sse_threshold = 0.0000 * signal_energy;  % Accept fits with <1% error relative
+
+for i = 1:total_iterations
+    % Random initial guesses
+    x0 = [rand, rand, N*rand, N*rand];
+    
+    % Lower and upper bounds
+    lb = [0, 0, 0, 0];
+    ub = [1, 1, N, N];
+    
+    % Define fitting function
+    fit_fun = @(x, t) solve_model(x(1), x(2), gamma_true, N, [N - x(3) - x(4); x(3); x(4); 0], t);
+    
+    % Perform fitting
+    options = optimoptions('lsqcurvefit', 'Display', 'off');
+    x_fit = lsqcurvefit(fit_fun, x0, tspan, Id_true, lb, ub, options);
+    
+    % Extract fitted parameters
+    beta_fit = x_fit(1);
+    phi_d_fit = x_fit(2);
+    I0_fit = x_fit(3);
+    R0_fit = x_fit(4);
+    
+    % Solve ODE with fitted parameters
+    S0_fit = N - I0_fit - R0_fit;
+    y0_fit = [S0_fit; I0_fit; R0_fit; 0];
+    [t_fit, y_fit] = ode45(@(t, y) model_ode(t, y, beta_fit, gamma_true, phi_d_fit, N), tspan, y0_fit);
+    
+    % Compute daily mortality from fitted model
+    D_fit = y_fit(:, 4);
+    Id_fit = [D_fit(1); diff(D_fit)];
+    
+    % Compute sum squared error
+    sse = sum((Id_fit - Id_true).^2);
+    
+    % Accept only if error is below threshold
+    if sse <= sse_threshold
+        count = count+1
+        accepted_params = [accepted_params; beta_fit, phi_d_fit, S0_fit, I0_fit, R0_fit];
+        
+        % Calculate R_naught for this parameter set
+        R_naught_fit = (beta_fit / gamma_true) * (S0_fit / N);
+        
+        % Store curves: (1) fit (2) S (3) I (4) R (5) D (6) R_naught
+        temp_data = zeros(length(tspan), 6);
+        temp_data(:,1) = Id_fit;
+        temp_data(:,2) = y_fit(:,1);
+        temp_data(:,3) = y_fit(:,2);
+        temp_data(:,4) = y_fit(:,3);
+        temp_data(:,5) = y_fit(:,4);
+        temp_data(:,6) = R_naught_fit;
+        
+        SIR_curves(:,:,count) = temp_data;
+
+        % Plot fitted results
+        nexttile(1); 
+        plot(tspan, Id_fit, 'Color', [0.7 0.7 0.7], 'LineWidth', 0.4);
+        
+        nexttile(2); 
+        plot(tspan, y_fit(:,1), 'Color', [0.7 0.7 0.7], 'LineWidth', 0.4);
+        
+        nexttile(3); 
+        plot(tspan, y_fit(:,2), 'Color', [0.7 0.7 0.7], 'LineWidth', 0.4);
+        
+        nexttile(4); 
+        plot(tspan, y_fit(:,3), 'Color', [0.7 0.7 0.7], 'LineWidth', 0.4);
+        
+        nexttile(5);
+        plot(tspan, y_fit(:,4), 'Color', [0.7 0.7 0.7], 'LineWidth', 0.4);
+        
+        nexttile(6);
+        R_naught_estimated = (beta_fit / gamma_true) * (S0_fit / N);
+        plot(tspan, R_naught_estimated * ones(size(tspan)), 'Color', [0.7 0.7 0.7], 'LineWidth', 0.4);
+    end
+end
+
+% After the loop ends, re-plot the true curves on top
+nexttile(1);
+plot(t, Id_true, 'r', 'LineWidth', 3);
+nexttile(2);
+plot(t, y_true(:,1), 'k', 'LineWidth', 3);
+nexttile(3);
+plot(t, y_true(:,2), 'k', 'LineWidth', 3);
+nexttile(4);
+plot(t, y_true(:,3), 'k', 'LineWidth', 3);
+nexttile(5);
+plot(t, y_true(:,4), 'k', 'LineWidth', 3);
+nexttile(6);
+plot(t, R_naught_true * ones(size(t)), 'k', 'LineWidth', 3);
+
+success_rate = count/total_iterations;
+fprintf('Success rate: %.2f (%d accepted out of %d)\n', success_rate, count, total_iterations);
+
+% Save fitted parameters and curves
+save('fitted_SIR_curves_MORTALITY.mat', 'SIR_curves', 'tspan');
+save('fitted_parameters_MORTALITY.mat', 'accepted_params');
+
+%% Plot Parameter Distributions and Joint Distributions
+if count > 0
+    figure;
+    n_params = 5;
+    param_names = {'$\beta$', '$\phi_d$', '$S(0)$', '$I(0)$', '$R(0)$'};
+    true_values = [beta_true, phi_d_true, S0, I0, R0];
+    tiledlayout(n_params, n_params, 'TileSpacing', 'compact', 'Padding', 'compact');
+    
+    for i = 1:n_params
+        for j = 1:n_params
+            nexttile;
+            if i > j
+                scatter(accepted_params(:, j), accepted_params(:, i), '.', 'MarkerEdgeAlpha', 0.5);
+                hold on;
+                plot(true_values(j), true_values(i), 'r*', 'MarkerSize', 10, 'LineWidth', 2);
+                hold off;
+                xlabel(param_names{j}, 'Interpreter', 'latex');
+                ylabel(param_names{i}, 'Interpreter', 'latex');
+                title([param_names{i}, ' vs ', param_names{j}], 'Interpreter', 'latex');
+            else
+                axis off;
+            end
+        end
+    end
+    
+    fig2 = gcf;
+    set(fig2, 'PaperUnits', 'inches', 'PaperPosition', [0 0 12 12]);
+    set(fig2, 'Position', [100, 100, 600, 600]);
+    print(fig2, 'parameter_distributions', '-dpng', '-r300');
+end
+
+%% Model ODE Function
+function dydt = model_ode(~, y, beta, gamma, phi_d, N)
+    S = y(1); I = y(2); R = y(3); D = y(4);
+    
+    dS = -beta * S * I / N;
+    dI = beta * S * I / N - gamma * I;
+    dR = (1 - phi_d) * gamma * I;
+    dD = phi_d * gamma * I;
+    
+    dydt = [dS; dI; dR; dD];
+end
+
+%% Function to Solve Model for Fitting
+function Id_sim = solve_model(beta, phi_d, gamma, N, y0, tspan)
+    [~, y] = ode45(@(t, y) model_ode(t, y, beta, gamma, phi_d, N), tspan, y0);
+    D_sim = y(:, 4);
+    Id_sim = [D_sim(1); diff(D_sim)];
+end
